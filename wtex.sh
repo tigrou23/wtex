@@ -22,4 +22,27 @@ then
   exit 1
 fi
 
-echo "Watching $1 for changes"
+# Check is inotifywait is installed
+if [ ! -x "$(command -v inotifywait)" ]
+then
+  echo "inotifywait is not installed. Please install it before running this script"
+  exit 1
+fi
+
+echo "Watching $1 for changes..."
+
+while true
+do
+  inotifywait -qq -e modify "$1"
+
+  echo "Compiling $1..."
+  pdflatex -interaction=nonstopmode "$1" > /tmp/wtex.log
+
+  if [ $? -ne 0 ]
+  then
+    cat /tmp/wtex.log
+  fi
+
+  echo "Done."
+done
+
