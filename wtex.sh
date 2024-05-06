@@ -18,7 +18,7 @@ fi
 
 if [ ! -f "$1" ]
 then
-  echo "File $1 not found"
+  echo "File '$1' not found"
   exit 1
 fi
 
@@ -29,13 +29,13 @@ then
   exit 1
 fi
 
-echo "Watching $1 for changes..."
+echo "Watching '$1' for changes..."
 
 while true
 do
   inotifywait -qq -e modify "$1"
 
-  echo "Compiling $1..."
+  echo -n "Compiling "$1"... "
   pdflatex -interaction=nonstopmode "$1" > /tmp/wtex.log
 
   if [ $? -ne 0 ]
