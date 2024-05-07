@@ -8,6 +8,6 @@ Todolist :
 
 * [ ] Support compilator configuration (with cli and config file)
 * [ ] Support compilation options (with cli and config file)
-* [ ] Add option to print logs
+* [X] Add option to print logs
 * [ ] Add option to print reduced logs (only errors)
 * [ ] Add the option to have timestamp
